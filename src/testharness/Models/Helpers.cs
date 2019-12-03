@@ -18,8 +18,10 @@ namespace TestHarness.Models
     public static string GetMSSQLConnectionString()
     {
       if (currentMSSQL_CS == "") {
-        string rawCS = GetSecret("testdb1_CS");
-        DB_CS currentCSObject = JsonConvert.DeserializeObject<DB_CS>(rawCS);
+        DB_CS currentCSObject = new DB_CS();
+        currentCSObject.host = "{server address}";
+        currentCSObject.username = "{user name}";
+        currentCSObject.password = "{password}";
         currentMSSQL_CS = $"Data Source={currentCSObject.host};User ID={currentCSObject.username};Password={currentCSObject.password}";
       }
       return currentMSSQL_CS;
